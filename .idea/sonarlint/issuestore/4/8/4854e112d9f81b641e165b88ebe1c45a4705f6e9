@@ -1,0 +1,19 @@
+
+>
+java:S1170"!Make this final field static too.(ãÒó8Ÿ²®•ÿ.
+9
+java:S1643@"Use a StringBuilder instead.(ì›Í´8¤³Ã•ÿ.
+G
+java:S1068"*Remove this unused "REGEXP" private field.(ãÒó8ãŠ¸Âÿ.
+r
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(‰¬èáşÿÿÿÿ8Ÿ²®•ÿ.
+V
+java:S1128"4Remove this unused import 'java.util.regex.Pattern'.(Ã•…Äúÿÿÿÿ8ãŠ¸Âÿ.
+m	java:S116"QRename this field "REGEXP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãÒó8Ÿ²®•ÿ.
+m
+java:S1149
+"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ûŞúÎ8Ÿ²®•ÿ.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 43 to the 15 allowed.(‘İÔĞıÿÿÿÿ8¤³Ã•ÿ.
+}
+java:S1450	"[Remove the "outputString" field and declare it as a local variable in the relevant methods.(ÔÏâåıÿÿÿÿ8¶‰ÀÂÿ.

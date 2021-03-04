@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical" android:id="@+id/sideButtonsID" android:tag="sideButtons">
+
+    <Button
+            android:id="@+id/buttonDivide"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="fill_horizontal"
+            android:text="/" android:onClick="onClick_buttonDivide"/>
+
+    <Button
+            android:id="@+id/buttonMultiply"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="fill_horizontal"
+            android:text="*" android:onClick="onClick_buttonMultiply"/>
+
+    <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="fill_horizontal"
+            android:text="+" android:onClick="onClick_buttonAdd"/>
+
+    <Button
+            android:id="@+id/buttonSubtract"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="fill_horizontal"
+            android:text="-" android:onClick="onClick_buttonSubtract"/>
+
+</LinearLayout>
