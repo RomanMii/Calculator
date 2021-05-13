@@ -1,11 +1,11 @@
 
-O
-java:S1128"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8ùàŸÂÿ.
+r	java:S116
+"QRename this field "REGEXP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖáıÂúÿÿÿÿ8±ø­Âÿ.
 C
 java:S1170
 "!Make this final field static too.(ÖáıÂúÿÿÿÿ8±ø­Âÿ.
-r	java:S116
-"QRename this field "REGEXP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖáıÂúÿÿÿÿ8±ø­Âÿ.
 v
 java:S5843
 "TSimplify this regular expression to reduce its complexity from 22 to the 20 allowed.(ÖáıÂúÿÿÿÿ8Òí”Ëÿ.
+O
+java:S1128"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8ùàŸÂÿ.

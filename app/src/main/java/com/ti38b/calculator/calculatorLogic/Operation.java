@@ -1,4 +1,4 @@
-package com.ti38b.calculator;
+package com.ti38b.calculator.calculatorLogic;
 
 public enum Operation {
     ADD('+',1),

@@ -1,14 +1,19 @@
-package com.ti38b.calculator;
+package com.ti38b.calculator.calculatorLogic;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+import com.ti38b.calculator.calculatorLogic.Operation;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Stack;
-import java.util.regex.Pattern;
 
 public class PolishAnnotation {
     private final String REGEXP = "[\\d\\.\\+\\-\\*\\(\\)\\/\\^]+";
     private String inputString;
     private String outputString = "";
-    protected Stack<Double> numberStack = new Stack<>();
-    protected Stack<Operation> symbolStack = new Stack<>();
+    public Stack<BigDecimal> numberStack = new Stack<>();
+    public Stack<Operation> symbolStack = new Stack<>();
 
     public PolishAnnotation(String inputString){
         this.inputString = inputString;
@@ -73,25 +78,25 @@ public class PolishAnnotation {
         }
     }
 
-    protected void addNumberToStack(String numberString){
-        double number;
+    public void addNumberToStack(String numberString){
+        BigDecimal number;
         try {
-            number = Double.parseDouble(numberString);
+            number = new BigDecimal(numberString);
             numberStack.push(number);
         }catch (Exception e){
             throw new IllegalArgumentException("wrong number");
         }
     }
 
-    protected void calculate(Operation operation){
+    public void calculate(Operation operation){
         while (!symbolStack.isEmpty()
                 && operation != Operation.LEFTBRACKET
                 && symbolStack.peek() != Operation.LEFTBRACKET
                 && operation.getPriority() <= symbolStack.peek().getPriority()){
             if(numberStack.size() >=2 ){
-                double secondNumber = numberStack.pop();
-                double firstNumber = numberStack.pop();
-                double result = arithmeticOperation(symbolStack.pop(), firstNumber, secondNumber);
+                BigDecimal secondNumber = numberStack.pop();
+                BigDecimal firstNumber = numberStack.pop();
+                BigDecimal result = arithmeticOperation(symbolStack.pop(), firstNumber, secondNumber);
                 numberStack.push(result);
             }else{
                 throw new ArithmeticException("not enough arguments");
@@ -101,24 +106,21 @@ public class PolishAnnotation {
             symbolStack.push(operation);
     }
 
-    protected double arithmeticOperation(Operation operation, double firstNumber, double secondNumber){
+    public BigDecimal arithmeticOperation(Operation operation, BigDecimal firstNumber, BigDecimal secondNumber){
         switch (operation){
             case ADD:
-                return firstNumber + secondNumber;
+                return firstNumber.add(secondNumber);
             case SUBTRACT:
-                return firstNumber - secondNumber;
+                return firstNumber.subtract(secondNumber);
             case MULTIPLY:
-                return firstNumber * secondNumber;
+                return firstNumber.multiply(secondNumber);
             case DIVIDE:
-                return firstNumber / secondNumber;
+                return firstNumber.divide(secondNumber,new MathContext(10, RoundingMode.CEILING));
             case POWER:
-                return Math.pow(firstNumber,secondNumber);
+                return BigDecimalMath.pow(firstNumber,secondNumber,new MathContext(10, RoundingMode.CEILING));
             default:
                 throw new IllegalArgumentException("wrong operator");
         }
     }
 
-    protected double numberStackPeek(){
-        return numberStack.peek();
-    }
 }

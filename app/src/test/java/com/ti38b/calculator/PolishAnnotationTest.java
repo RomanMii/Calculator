@@ -1,7 +1,11 @@
 package com.ti38b.calculator;
 
+import com.ti38b.calculator.calculatorLogic.Operation;
+import com.ti38b.calculator.calculatorLogic.PolishAnnotation;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
@@ -15,8 +19,8 @@ public class PolishAnnotationTest {
 
     @Test
     public void getOutputString(){
-        polishAnnotation.numberStack.push(3.0);
-        assertEquals("3.0", polishAnnotation.getOutputString());
+        polishAnnotation.numberStack.push(new BigDecimal(3));
+        assertEquals("3", polishAnnotation.getOutputString());
     }
 
     @Test
@@ -37,41 +41,36 @@ public class PolishAnnotationTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void arithmeticOperationFailed(){
-        polishAnnotation.arithmeticOperation(Operation.LEFTBRACKET,1,2);
+        polishAnnotation.arithmeticOperation(Operation.LEFTBRACKET,new BigDecimal(1),new BigDecimal(2));
     }
 
     @Test
     public void arithmeticOperationAdd(){
-        assertEquals(3.0,
-                polishAnnotation.arithmeticOperation(Operation.ADD,1,2),
-                0);
+        assertEquals(new BigDecimal(3.0),
+                polishAnnotation.arithmeticOperation(Operation.ADD,new BigDecimal(1),new BigDecimal(2)));
     }
 
     @Test
     public void arithmeticOperationSubtract(){
-        assertEquals(-1.0,
-                polishAnnotation.arithmeticOperation(Operation.SUBTRACT,1,2),
-                0);
+        assertEquals(new BigDecimal(-1.0),
+                polishAnnotation.arithmeticOperation(Operation.SUBTRACT,new BigDecimal(1),new BigDecimal(2)));
     }
 
     @Test
     public void arithmeticOperationMultiply(){
-        assertEquals(2,
-                polishAnnotation.arithmeticOperation(Operation.MULTIPLY,1,2),
-                0);
+        assertEquals(new BigDecimal(2),
+                polishAnnotation.arithmeticOperation(Operation.MULTIPLY,new BigDecimal(1),new BigDecimal(2)));
     }
 
     @Test
     public void arithmeticOperationDivide(){
-        assertEquals(0.5,
-                polishAnnotation.arithmeticOperation(Operation.DIVIDE,1,2),
-                0);
+        assertEquals(new BigDecimal(0.5),
+                polishAnnotation.arithmeticOperation(Operation.DIVIDE,new BigDecimal(1),new BigDecimal(2)));
     }
 
     @Test
     public void arithmeticOperationPower(){
-        assertEquals(4.0,
-                polishAnnotation.arithmeticOperation(Operation.POWER,2,2),
-                0);
+        assertEquals(new BigDecimal(1),
+                polishAnnotation.arithmeticOperation(Operation.POWER,new BigDecimal(1),new BigDecimal(2)));
     }
 }

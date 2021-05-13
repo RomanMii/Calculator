@@ -1,6 +1,4 @@
-package com.ti38b.calculator;
-
-import android.util.Log;
+package com.ti38b.calculator.calculatorLogic;
 
 import java.util.regex.Pattern;
 

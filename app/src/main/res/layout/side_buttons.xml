@@ -7,28 +7,32 @@
     <Button
             android:id="@+id/buttonDivide"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
+            android:textSize="40dp"
             android:layout_gravity="fill_horizontal"
             android:text="/" android:onClick="onClick_buttonDivide"/>
 
     <Button
             android:id="@+id/buttonMultiply"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
+            android:textSize="40dp"
             android:layout_gravity="fill_horizontal"
             android:text="*" android:onClick="onClick_buttonMultiply"/>
 
     <Button
             android:id="@+id/buttonAdd"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
+            android:textSize="40dp"
             android:layout_gravity="fill_horizontal"
             android:text="+" android:onClick="onClick_buttonAdd"/>
 
     <Button
             android:id="@+id/buttonSubtract"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
+            android:textSize="40dp"
             android:layout_gravity="fill_horizontal"
             android:text="-" android:onClick="onClick_buttonSubtract"/>
 

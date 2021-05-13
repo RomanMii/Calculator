@@ -1,6 +1,6 @@
 package com.ti38b.calculator;
 
-import android.media.VolumeShaper;
+import com.ti38b.calculator.calculatorLogic.Operation;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +9,7 @@ public class OperationTest {
 
     @Test
     public void getPriority(){
-        assertEquals(1,Operation.ADD.getPriority());
+        assertEquals(1, Operation.ADD.getPriority());
     }
 
     @Test

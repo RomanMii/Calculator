@@ -1,18 +1,25 @@
 package com.ti38b.calculator;
 
-import android.util.Log;
+import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.ti38b.calculator.calculatorLogic.Calculator;
+import com.ti38b.calculator.historyDataBase.DBhelper;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView inputText;
     TextView outputText;
     androidx.gridlayout.widget.GridLayout gridLayout;
-    View additionalButtons,sideButtons;
+    ViewFlipper viewFlipper;
+    DBhelper dBhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,32 +30,44 @@ public class MainActivity extends AppCompatActivity {
         outputText = findViewById(R.id.output);
 
         gridLayout = findViewById(R.id.buttonsID);
-        additionalButtons = inflater.inflate(R.layout.additional_buttons,null);
-        sideButtons = inflater.inflate(R.layout.side_buttons,null);
+        viewFlipper = findViewById(R.id.viewFlipper);
+        dBhelper = new DBhelper(this);
+    }
+
+    public void onClick_history(View view){
+
+        Cursor cursor = dBhelper.select();
+        if(cursor.getCount() == 0){
+            Toast.makeText(MainActivity.this,"history is empty", 1);
+            return;
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        while (cursor.moveToNext()){
+            stringBuffer.append(cursor.getString(0) + "\n");
+            stringBuffer.append("=" + cursor.getString(1) + "\n");
+            stringBuffer.append("_________" + "\n");
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setCancelable(true);
+        builder.setMessage(stringBuffer.toString());
+        builder.show();
     }
 
     public void onClick_buttonEqual(View view){
         String inputString = inputText.getText().toString();
         Calculator calculator = new Calculator(inputString);
-        outputText.setText(calculator.getOutput());
+
+        String outputString = calculator.getOutput();
+        outputText.setText(outputString);
+
+        dBhelper.insert(inputString,outputString);
     }
 
     public void onClick_buttonMore(View view){
-        View replaceableChild = null;
-        for (int i = 0; i < gridLayout.getChildCount(); i++){
-            replaceableChild = gridLayout.getChildAt(i);
-            Log.i("",replaceableChild.getTag().toString());
-            if(replaceableChild.getTag() == sideButtons.getTag()){
-                Log.i("","sideButtons yes");
-                gridLayout.removeView(replaceableChild);
-                gridLayout.addView(additionalButtons,replaceableChild.getLayoutParams());
-            }
-
-            if(replaceableChild.getTag() == additionalButtons.getTag()){
-                Log.i("","additionalButtons yes");
-                gridLayout.removeView(replaceableChild);
-                gridLayout.addView(sideButtons,replaceableChild.getLayoutParams());
-            }
+        if(viewFlipper.getDisplayedChild() == 0){
+            viewFlipper.setDisplayedChild(1);
+        }else if(viewFlipper.getDisplayedChild() == 1){
+            viewFlipper.setDisplayedChild(0);
         }
     }
 
